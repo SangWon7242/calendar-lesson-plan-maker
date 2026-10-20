@@ -2,82 +2,111 @@
 <title>달력 수업계획서 만들기</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Gowun+Batang:wght@400;700&family=IBM+Plex+Sans+KR:wght@400;500;600&family=Nanum+Pen+Script&display=swap">
 <style>
-/* Layout: one narrow working column — upload step on top, one panel per class below, each showing the finished image */
+/* Concept: 논술학원 원고지 — the title is written into manuscript squares, steps and tips are red-pen 첨삭 marks, key words get a highlighter */
 :root{
-  --bg:#eef1f6; --surface:#ffffff; --fg:#1f2a4a; --muted:#5d6886; --line:#d9dfea;
-  --accent:#1f2a4a; --accent-fg:#ffffff; --soft:#e3eaf5; --link:#2b5bb8;
-  --warn-bg:#fff3e6; --warn-fg:#9a4a10;
-  --font:"Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  --bg:#ECEEEA; --surface:#ffffff; --fg:#1E2B3A; --muted:#5E6670; --line:#D8DBD4;
+  --accent:#1E2B3A; --accent-fg:#ffffff; --soft:#F2F3EF; --link:#2F5F9E;
+  --pen:#C4372F; --grid:rgba(196,55,47,.32); --hl:#FFE36E;
+  --warn-bg:#FDEDEB; --warn-fg:#9E2A23;
+  --font:"IBM Plex Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  --serif:"Gowun Batang","Nanum Myeongjo",serif;
+  --hand:"Nanum Pen Script",cursive;
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
-  --bg:#12161f; --surface:#1b2130; --fg:#e7ebf4; --muted:#9aa5bf; --line:#2c3447;
-  --accent:#8fb0ec; --accent-fg:#12161f; --soft:#243049; --link:#9cbcf5;
-  --warn-bg:#3a2a18; --warn-fg:#f3c08e; color-scheme:dark}}
+  --bg:#141A22; --surface:#1C232D; --fg:#E8E6E1; --muted:#A3A9B1; --line:#303945;
+  --accent:#E8E6E1; --accent-fg:#141A22; --soft:#232B36; --link:#8DB4EA;
+  --pen:#EF7A70; --grid:rgba(239,122,112,.35); --hl:rgba(255,227,110,.35);
+  --warn-bg:#3A2220; --warn-fg:#F5B3AC; color-scheme:dark}}
 :root[data-theme="dark"]{
-  --bg:#12161f; --surface:#1b2130; --fg:#e7ebf4; --muted:#9aa5bf; --line:#2c3447;
-  --accent:#8fb0ec; --accent-fg:#12161f; --soft:#243049; --link:#9cbcf5;
-  --warn-bg:#3a2a18; --warn-fg:#f3c08e; color-scheme:dark}
-body{background:var(--bg);color:var(--fg);font-family:var(--font);font-size:15px;line-height:1.55;word-break:keep-all}
-.page{max-width:760px;margin:0 auto;padding-block:28px 64px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:flex;flex-direction:column;gap:20px}
-header h1{font-size:28px;font-weight:900;letter-spacing:-.5px;text-wrap:balance;margin:0}
-header p{margin:6px 0 0;color:var(--muted)}
-.month{display:inline-block;margin-top:10px;background:var(--soft);color:var(--fg);border-radius:999px;padding:4px 12px;font-size:13px;font-weight:700}
-.panel{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:20px;display:flex;flex-direction:column;gap:14px;min-width:0}
-.step{font-size:12px;font-weight:700;letter-spacing:.06em;color:var(--muted)}
-.panel h2{font-size:19px;margin:0}
-.drop{border:2px dashed var(--line);border-radius:14px;padding:26px 16px;text-align:center;cursor:pointer;transition:border-color .15s,background .15s}
-.drop:hover,.drop.over{border-color:var(--accent);background:var(--soft)}
-.drop strong{display:block;font-size:16px}
+  --bg:#141A22; --surface:#1C232D; --fg:#E8E6E1; --muted:#A3A9B1; --line:#303945;
+  --accent:#E8E6E1; --accent-fg:#141A22; --soft:#232B36; --link:#8DB4EA;
+  --pen:#EF7A70; --grid:rgba(239,122,112,.35); --hl:rgba(255,227,110,.35);
+  --warn-bg:#3A2220; --warn-fg:#F5B3AC; color-scheme:dark}
+body{background:var(--bg);color:var(--fg);font-family:var(--font);font-size:15px;line-height:1.65;word-break:keep-all}
+.page{max-width:760px;margin:0 auto;padding-block:40px 72px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:flex;flex-direction:column;gap:24px}
+
+/* 원고지 title: one character per square */
+header{padding-bottom:4px}
+header h1{margin:0;display:flex;flex-wrap:nowrap;font-family:var(--serif);font-weight:700;color:var(--fg);
+  --cell:min(54px,calc((100vw - 32px) / 12));font-size:calc(var(--cell) * .6);line-height:1}
+header h1 .ch{box-sizing:border-box;flex:none;width:var(--cell);height:var(--cell);display:flex;align-items:center;justify-content:center;
+  border:1px solid var(--grid);margin-left:-1px;background:var(--surface)}
+header h1 .ch:first-child{margin-left:0}
+header h1 .sp{background:transparent}
+header p{margin:16px 0 0;color:var(--muted);font-size:16px;max-width:36em}
+.month{display:inline-block;margin-top:8px;font-family:var(--hand);font-size:24px;line-height:1.2;color:var(--pen)}
+
+/* each step is a sheet of paper with the 원고지 double rule at the top */
+.panel{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:26px 22px 22px;display:flex;flex-direction:column;gap:14px;min-width:0;
+  box-shadow:0 1px 0 var(--line),4px 4px 0 -1px var(--surface),4px 4px 0 0 var(--line)}
+.page>.panel::before{content:"";position:absolute;left:0;right:0;top:0;height:6px;border-top:2px solid var(--grid);border-bottom:1px solid var(--grid)}
+.step{font-family:var(--hand);font-size:27px;line-height:1;color:var(--pen)}
+.panel h2{font-family:var(--serif);font-size:22px;font-weight:700;margin:0;letter-spacing:-.3px}
+
+/* drop zone printed as blank 원고지 */
+.drop{position:relative;display:flex;flex-direction:column;align-items:center;gap:6px;border:1.5px dashed var(--pen);border-radius:4px;padding:34px 16px;text-align:center;cursor:pointer;
+  background-color:var(--surface);
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:28px 28px;background-position:-1px -1px;transition:background-color .15s}
+.drop strong,.drop span{position:relative;display:inline-block;background:var(--surface);padding:2px 8px}
+.drop strong{font-family:var(--serif);font-size:18px}
 .drop span{color:var(--muted);font-size:13px}
+.drop:hover strong,.drop.over strong{background:linear-gradient(transparent 50%,var(--hl) 50%),var(--surface)}
+.drop.over{background-color:var(--soft)}
 .drop input{position:absolute;width:1px;height:1px;opacity:0}
-.hint{font-size:13px;color:var(--muted);margin:0}
-.hint code{font-family:inherit;background:var(--soft);border-radius:6px;padding:1px 6px;color:var(--fg)}
-.status{font-size:14px;color:var(--muted);min-height:1em}
+.hint{font-size:13.5px;color:var(--muted);margin:0;line-height:1.75}
+.hint code{font-family:inherit;font-weight:600;color:var(--fg);padding:0 2px;background:linear-gradient(transparent 55%,var(--hl) 55%)}
+.status{font-size:14px;color:var(--pen);min-height:1em;font-weight:600}
 .bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between}
-button{font:inherit;font-weight:700;border-radius:10px;padding:9px 16px;cursor:pointer;border:1px solid var(--accent);background:var(--accent);color:var(--accent-fg)}
-button.ghost{background:transparent;color:var(--fg);border-color:var(--line)}
-button:disabled{opacity:.5;cursor:default}
+button{font:inherit;font-weight:600;border-radius:4px;padding:9px 18px;cursor:pointer;border:1px solid var(--accent);background:var(--accent);color:var(--accent-fg)}
+button:hover:not(:disabled){filter:brightness(1.15)}
+button.ghost{background:transparent;color:var(--fg);border-color:var(--fg)}
+button.ghost:hover:not(:disabled){filter:none;background:var(--soft)}
+button:disabled{opacity:.45;cursor:default}
 button:focus-visible,select:focus-visible,input:focus-visible,textarea:focus-visible,.drop:focus-within{outline:3px solid var(--link);outline-offset:2px}
-.cls-head{display:flex;flex-wrap:wrap;gap:8px;align-items:baseline;justify-content:space-between}
-.cls-head h3{margin:0;font-size:17px}
-.tag{font-size:12px;font-weight:700;border-radius:999px;padding:2px 10px;background:var(--soft);color:var(--fg)}
+.cls-head{display:flex;flex-wrap:wrap;gap:8px;align-items:baseline;justify-content:space-between;border-bottom:1px solid var(--line);padding-bottom:8px}
+.cls-head h3{margin:0;font-family:var(--serif);font-size:19px;font-weight:700}
+.tag{font-family:var(--hand);font-size:20px;line-height:1;color:var(--pen);border:1.5px solid var(--pen);border-radius:999px;padding:1px 10px}
 .fields{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .fields .wide{grid-column:1/-1}
-textarea{font:inherit;font-size:14px;color:var(--fg);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:7px 10px;width:100%;min-width:0;resize:vertical;line-height:1.5}
-.fields label,.seg label{display:flex;flex-direction:column;gap:4px;font-size:12px;color:var(--muted);font-weight:700;min-width:0}
-input[type=text],select,textarea{font:inherit;font-size:14px;color:var(--fg);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:7px 10px;width:100%;min-width:0}
-.segs{display:flex;flex-direction:column;gap:8px}
+.fields label,.seg label{display:flex;flex-direction:column;gap:4px;font-size:12.5px;color:var(--muted);font-weight:600;min-width:0}
+input[type=text],select,textarea{font:inherit;font-size:14px;color:var(--fg);background:var(--surface);border:0;border-bottom:1.5px solid var(--line);border-radius:0;padding:7px 2px;width:100%;min-width:0;line-height:1.5}
+input[type=text]:hover,select:hover,textarea:hover{border-bottom-color:var(--muted)}
+textarea{resize:vertical;border:1px solid var(--line);border-radius:4px;padding:8px 10px}
+.segs{display:flex;flex-direction:column;gap:10px}
 .seg{display:grid;grid-template-columns:1fr 1.4fr;gap:10px;align-items:end}
 .seg .dates{font-size:13px;color:var(--fg)}
-.warn{background:var(--warn-bg);color:var(--warn-fg);border-radius:10px;padding:8px 12px;font-size:13px;font-weight:500}
-.live{position:relative;overflow:hidden;border:1px solid var(--line);border-radius:12px;background:#f4f6fa}
+.warn{background:var(--warn-bg);color:var(--warn-fg);border-left:3px solid var(--pen);border-radius:0 4px 4px 0;padding:8px 12px;font-size:13px;font-weight:500}
+.live{position:relative;overflow:hidden;border:1px solid var(--line);border-radius:4px;background:#f4f6fa}
 .scaler{width:1200px;transform-origin:0 0}
-.live .sheet .ed{cursor:pointer;border-radius:10px;outline:3px dashed rgba(74,123,208,.5);outline-offset:4px}
-.live .sheet .ed.editing{outline:5px solid #e07a3f}
+.live .sheet .ed{cursor:pointer;border-radius:10px;outline:3px dashed rgba(196,55,47,.55);outline-offset:4px}
+.live .sheet .ed.editing{outline:5px solid #C4372F}
 .sheet em{font-style:normal}
-.editor{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--surface);border:2px solid var(--accent);border-radius:12px;padding:12px;display:flex;flex-direction:column;gap:8px}
-.editor label{display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:700;color:var(--muted)}
+.editor{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--surface);border:1.5px solid var(--pen);border-radius:4px;padding:12px;display:flex;flex-direction:column;gap:8px;box-shadow:0 6px 18px rgba(20,26,34,.12)}
+.editor label{display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:600;color:var(--pen)}
 .editor textarea{font-size:16px}
 [hidden]{display:none!important}
 .btns{display:flex;gap:8px;flex-wrap:wrap}
-.viewer{position:fixed;inset:0;z-index:50;background:rgba(12,16,26,.92);display:flex;flex-direction:column;padding:env(safe-area-inset-top,0px) max(12px,env(safe-area-inset-right,0px)) env(safe-area-inset-bottom,0px) max(12px,env(safe-area-inset-left,0px))}
+.viewer{position:fixed;inset:0;z-index:50;background:rgba(20,26,34,.94);display:flex;flex-direction:column;padding:env(safe-area-inset-top,0px) max(12px,env(safe-area-inset-right,0px)) env(safe-area-inset-bottom,0px) max(12px,env(safe-area-inset-left,0px))}
 .viewer .vbar{display:flex;gap:12px;align-items:center;justify-content:space-between;padding:12px 0;color:#fff;font-size:14px;line-height:1.5}
 .viewer .vbar p{margin:0}
-.viewer .vbar button{flex:none;background:#fff;color:#1f2a4a;border-color:#fff}
+.viewer .vbar button{flex:none;background:#fff;color:#1E2B3A;border-color:#fff}
 .viewer .vimg{flex:1;overflow:auto;-webkit-overflow-scrolling:touch}
 .viewer img{display:block;width:100%;max-width:700px;margin:0 auto;height:auto;-webkit-touch-callout:default;user-select:auto}
-.shot{border-radius:12px;border:1px solid var(--line);background:var(--bg);overflow:hidden}
+.shot{border-radius:4px;border:1px solid var(--line);background:var(--soft);overflow:hidden}
 .shot img{display:block;width:100%;height:auto}
 .shot .wait{padding:40px;text-align:center;color:var(--muted)}
 details{font-size:14px}
-details summary{cursor:pointer;font-weight:700}
-.cat{display:flex;flex-direction:column;gap:10px;margin-top:12px}
-.cat div{border-top:1px solid var(--line);padding-top:8px}
-.cat b{display:block}
+details summary{cursor:pointer;font-family:var(--serif);font-weight:700;font-size:17px}
+details summary::marker{color:var(--pen)}
+.cat{display:flex;flex-direction:column;gap:10px;margin-top:14px}
+.cat div{border-top:1px solid var(--line);padding-top:10px}
+.cat b{display:block;font-family:var(--serif);font-size:15.5px}
 .cat ol{margin:4px 0 0;padding-left:20px;color:var(--muted)}
-@media (max-width:520px){.fields,.seg{grid-template-columns:1fr}}
+.cat ol li::marker{color:var(--pen)}
+@media (max-width:520px){.fields,.seg{grid-template-columns:1fr}.panel{padding:24px 16px 18px}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 
 /* ---- 이미지로 저장되는 수업계획서 (고정 디자인) ---- */
@@ -117,7 +146,7 @@ details summary{cursor:pointer;font-weight:700}
 
 <div class="page">
   <header>
-    <h1>달력 수업계획서 만들기</h1>
+    <h1 aria-label="달력 수업계획서 만들기"><span aria-hidden="true" style="display:contents"><span class="ch">달</span><span class="ch">력</span><span class="ch sp"></span><span class="ch">수</span><span class="ch">업</span><span class="ch">계</span><span class="ch">획</span><span class="ch">서</span><span class="ch sp"></span><span class="ch">만</span><span class="ch">들</span><span class="ch">기</span></span></h1>
     <p>반별 엑셀을 올리면 학부모님께 보낼 달력형 수업계획서 이미지가 바로 만들어져요.</p>
     <span class="month" id="monthChip"></span>
   </header>
