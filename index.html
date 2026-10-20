@@ -79,7 +79,7 @@ textarea{resize:vertical;border:1px solid var(--line);border-radius:4px;padding:
 .seg{display:grid;grid-template-columns:1fr 1.4fr;gap:10px;align-items:end}
 .seg .dates{font-size:13px;color:var(--fg)}
 .warn{background:var(--warn-bg);color:var(--warn-fg);border-left:3px solid var(--pen);border-radius:0 4px 4px 0;padding:8px 12px;font-size:13px;font-weight:500}
-.live{position:relative;overflow:hidden;border:1px solid var(--line);border-radius:4px;background:#f4f6fa}
+.live{position:relative;overflow:hidden;border:1px solid var(--line);border-radius:4px;background:#F3F4F0}
 .scaler{width:1200px;transform-origin:0 0}
 .live .sheet .ed{cursor:pointer;border-radius:10px;outline:3px dashed rgba(196,55,47,.55);outline-offset:4px}
 .live .sheet .ed.editing{outline:5px solid #C4372F}
@@ -109,39 +109,43 @@ details summary::marker{color:var(--pen)}
 @media (max-width:520px){.fields,.seg{grid-template-columns:1fr}.panel{padding:24px 16px 18px}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 
-/* ---- 이미지로 저장되는 수업계획서 (고정 디자인) ---- */
+/* ---- 이미지로 저장되는 수업계획서 (고정 디자인) — 원고지 달력 + 첨삭 펜 동그라미 ---- */
 #stage{position:fixed;left:-20000px;top:0;width:1200px;pointer-events:none}
-.sheet{--n:#1f2a4a;--g:#4a5878;--sl:#e3e7ee;--sb:#e3eaf5;width:1200px;background:#f4f6fa;font-family:"Noto Sans KR",sans-serif;color:#1f2a4a;word-break:keep-all;line-height:normal}
-.sheet .bar1{height:14px;background:linear-gradient(90deg,#4a7bd0,#2b3f6e,#1f2a4a)}
-.sheet .bar2{height:14px;background:linear-gradient(90deg,#1f2a4a,#2b3f6e,#4a7bd0)}
-.sheet .wrap{padding:60px 70px 70px}
-.sheet .hello{text-align:center;font-size:34px;color:#4a5878;margin-bottom:6px}
-.sheet h1{text-align:center;font-weight:900;letter-spacing:-1px;line-height:1.2;margin:0;color:#1f2a4a}
-.sheet .time{margin:30px auto 44px;display:table;background:#1f2a4a;color:#fff;border-radius:60px;padding:16px 46px;font-size:36px;font-weight:700}
-.sheet .time span{font-weight:400;opacity:.8;margin-right:16px}
-.sheet .box{background:#fff;border:2px solid #e3e7ee;border-radius:36px;padding:36px 40px 30px;margin-bottom:30px}
-.sheet .mon{font-size:44px;font-weight:900;margin-bottom:18px;padding-left:6px}
-.sheet .grid{display:grid;grid-template-columns:repeat(7,1fr);row-gap:6px}
-.sheet .wd{text-align:center;font-size:26px;font-weight:700;color:#6b7590;padding-bottom:12px;border-bottom:2px solid #e3e7ee;margin-bottom:8px}
-.sheet .wd.sun{color:#d9534f}.sheet .wd.sat{color:#4a7bd0}
-.sheet .cell{height:112px;display:flex;flex-direction:column;align-items:center;padding-top:8px}
-.sheet .num{width:66px;height:66px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:32px;color:#1f2a4a}
-.sheet .cell.sun .num{color:#d9534f}.sheet .cell.sat .num{color:#4a7bd0}
-.sheet .cell.on .num{color:#fff;font-weight:700}
-.sheet .lab{margin-top:6px;font-size:19px;font-weight:700;white-space:nowrap;letter-spacing:-.5px}
-.sheet .legend{display:flex;gap:30px;justify-content:center;margin-top:14px;font-size:24px;color:#4a5878}
-.sheet .legend i{display:inline-block;width:22px;height:22px;border-radius:50%;margin-right:8px;vertical-align:-3px}
-.sheet .sec{font-size:40px;font-weight:900;margin:14px 0 22px 6px}
-.sheet .card{display:flex;gap:28px;background:#fff;border:2px solid #e3e7ee;border-radius:32px;padding:30px 36px;margin-bottom:22px}
-.sheet .badge{flex:none;width:76px;height:76px;border-radius:50%;color:#fff;font-size:34px;font-weight:900;display:flex;align-items:center;justify-content:center}
-.sheet .meta{font-size:24px;color:#4a5878;margin-bottom:6px}
-.sheet .meta b{color:#2b5bb8;background:#eaf1fc;border-radius:16px;padding:3px 14px;margin-left:10px;font-size:21px}
-.sheet .book{font-size:36px;font-weight:700;line-height:1.3;margin-bottom:8px}
-.sheet .book.none{color:#b0b7c8}
-.sheet .desc{font-size:27px;line-height:1.5;color:#333}
-.sheet .lnk{margin-top:12px;font-size:22px;color:#6b7590}
-.sheet .lnk b{color:#4a5878;margin-right:10px}
-.sheet .msg{margin-top:40px;background:#fff;border:2px solid #e3e7ee;border-radius:36px;padding:40px;text-align:center;font-size:34px;line-height:1.6}
+.sheet{--ink:#1E2B3A;--pen:#C4372F;--blue:#1E4E8C;--grid:#EBC3BF;--line:#D8DBD4;--hl:#FFE36E;width:1200px;background:#F3F4F0;font-family:"IBM Plex Sans KR","Noto Sans KR",sans-serif;color:var(--ink);word-break:keep-all;line-height:normal}
+.sheet .bar1,.sheet .bar2{height:8px;background:#fff;border-top:6px solid var(--pen);border-bottom:2px solid var(--pen)}
+.sheet .bar2{border-top-width:2px;border-bottom-width:6px}
+.sheet .wrap{padding:64px 70px 70px}
+.sheet .hello{text-align:center;font-family:"Nanum Pen Script",cursive;font-size:52px;line-height:1.1;color:var(--pen);margin-bottom:10px}
+.sheet h1{display:table;margin:0 auto;padding:0 12px;text-align:center;font-family:"Gowun Batang",serif;font-weight:700;letter-spacing:-1px;line-height:1.25;color:var(--ink);background:linear-gradient(transparent 62%,var(--hl) 62%)}
+.sheet .time{margin:34px auto 46px;display:table;background:#fff;color:var(--ink);border:2.5px solid var(--ink);border-radius:6px;padding:14px 40px;font-size:36px;font-weight:600}
+.sheet .time span{font-family:"Nanum Pen Script",cursive;font-weight:400;font-size:44px;color:var(--pen);margin-right:18px}
+.sheet .box{position:relative;background:#fff;border:2px solid var(--line);border-radius:8px;padding:44px 40px 32px;margin-bottom:30px}
+.sheet .box::before{content:"";position:absolute;left:0;right:0;top:0;height:8px;border-top:3px solid var(--grid);border-bottom:1.5px solid var(--grid)}
+.sheet .mon{font-family:"Gowun Batang",serif;font-size:46px;font-weight:700;margin-bottom:20px;padding-left:4px}
+.sheet .grid{display:grid;grid-template-columns:repeat(7,1fr);border-top:2px solid var(--grid);border-left:2px solid var(--grid)}
+.sheet .wd,.sheet .cell{border-right:2px solid var(--grid);border-bottom:2px solid var(--grid)}
+.sheet .wd{text-align:center;font-family:"Gowun Batang",serif;font-size:27px;font-weight:700;color:#5E6670;padding:12px 0;background:#FBF4F3}
+.sheet .wd.sun{color:var(--pen)}.sheet .wd.sat{color:var(--blue)}
+.sheet .cell{height:124px;display:flex;flex-direction:column;align-items:center;padding-top:10px;box-sizing:border-box}
+.sheet .num{width:64px;height:64px;box-sizing:border-box;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:"Gowun Batang",serif;font-size:32px;color:var(--ink)}
+.sheet .cell.sun .num{color:var(--pen)}.sheet .cell.sat .num{color:var(--blue)}
+.sheet .cell.on{background:#FFF8D6}
+.sheet .cell.on .num{border:4px solid var(--c);color:var(--c);font-weight:700}
+.sheet .lab{margin-top:6px;font-size:19px;font-weight:600;white-space:nowrap;letter-spacing:-.5px;color:var(--c)}
+.sheet .legend{display:flex;gap:30px;justify-content:center;margin-top:20px;font-size:24px;color:#5E6670}
+.sheet .legend i{display:inline-block;width:22px;height:22px;box-sizing:border-box;border-radius:50%;border:4px solid var(--c);margin-right:8px;vertical-align:-3px}
+.sheet .sec{font-family:"Gowun Batang",serif;font-size:42px;font-weight:700;margin:22px 0 22px 4px;padding-bottom:12px;border-bottom:2.5px solid var(--ink)}
+.sheet .card{display:flex;gap:30px;background:#fff;border:2px solid var(--line);border-radius:8px;padding:30px 36px;margin-bottom:20px}
+.sheet .badge{flex:none;width:76px;height:76px;box-sizing:border-box;border:3px solid var(--c);color:var(--c);background:#fff;font-family:"Gowun Batang",serif;font-size:36px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.sheet .meta{font-size:24px;color:#5E6670;margin-bottom:8px}
+.sheet .meta b{color:var(--ink);font-weight:600;font-size:22px;margin-left:12px;padding:0 4px;background:linear-gradient(transparent 55%,var(--hl) 55%)}
+.sheet .book{font-family:"Gowun Batang",serif;font-size:37px;font-weight:700;line-height:1.3;margin-bottom:10px}
+.sheet .book.none{color:#B4B8BE}
+.sheet .desc{font-size:27px;line-height:1.6;color:#333A42}
+.sheet .lnk{margin-top:12px;font-size:22px;color:#5E6670}
+.sheet .lnk b{font-family:"Nanum Pen Script",cursive;font-weight:400;font-size:30px;color:var(--pen);margin-right:10px}
+.sheet .msg{position:relative;margin-top:40px;background:#fff;border:2px solid var(--line);border-radius:8px;padding:52px 50px 44px;text-align:center;font-family:"Gowun Batang",serif;font-size:34px;line-height:1.7}
+.sheet .msg::before{content:"";position:absolute;left:0;right:0;top:0;height:8px;border-top:3px solid var(--grid);border-bottom:1.5px solid var(--grid)}
 </style>
 
 <div class="page">
@@ -192,7 +196,7 @@ details summary::marker{color:var(--pen)}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
 <script>
 /*__LOGIC_START__*/
-const COLORS = ["#1f2a4a", "#e07a3f", "#2f8f6b"];
+const COLORS = ["#C4372F", "#1E4E8C", "#2E7D5B"];
 const WD = "일월화수목금토";
 const norm = s => String(s ?? "").normalize("NFKC").replace(/\s+/g, "").toLowerCase();
 
@@ -312,20 +316,20 @@ function monthHTML(y, m, rows) {
   for (let i = 0; i < first; i++) h += '<div class="cell"></div>';
   for (let d = 1; d <= days; d++) {
     const wi = (first + d - 1) % 7, wc = wi === 0 ? "sun" : wi === 6 ? "sat" : "", r = marks[d];
-    h += r ? '<div class="cell on ' + wc + '"><div class="num" style="background:' + r.color + '">' + d + '</div><div class="lab" style="color:' + r.color + '">' + esc(r.lab) + "</div></div>"
+    h += r ? '<div class="cell on ' + wc + '" style="--c:' + r.color + '"><div class="num">' + d + '</div><div class="lab">' + esc(r.lab) + "</div></div>"
            : '<div class="cell ' + wc + '"><div class="num">' + d + "</div></div>";
   }
   return h + "</div>";
 }
 
 function sheetHTML(v) {
-  const legend = v.legend.length ? '<div class="legend">' + v.legend.map(l => '<span><i style="background:' + l.color + '"></i>' + esc(l.name) + "</span>").join("") + "</div>" : "";
+  const legend = v.legend.length ? '<div class="legend">' + v.legend.map(l => '<span><i style="--c:' + l.color + '"></i>' + esc(l.name) + "</span>").join("") + "</div>" : "";
   const cals = v.months.map(([y, m]) => '<div class="box">' + monthHTML(y, m, v.rows) + legend + "</div>").join("");
   const cards = v.rows.map((r, i) => {
     const lnk = r.link ? '<div class="lnk"><b>' + esc(r.label) + '</b><span class="ed" data-ed="교과연계">' + esc(r.link) + "</span></div>" : "";
     const tag = r.tag ? '<b class="ed" data-ed="수업 주제">' + esc(r.tag) + "</b>" : "";
     const book = r.book ? '<div class="book ed" data-ed="필독서">' + esc(r.book) + "</div>" : '<div class="book none ed" data-ed="필독서">책 정보 없음</div>';
-    return '<div class="card"><div class="badge" style="background:' + r.color + '">' + (i + 1) + '</div><div>' +
+    return '<div class="card"><div class="badge" style="--c:' + r.color + '">' + (i + 1) + '</div><div>' +
       '<div class="meta">' + r.m + "월 " + r.d + "일(" + r.wd + ") · " + esc(r.lab) + tag + "</div>" + book +
       (r.desc ? '<div class="desc ed" data-ed="한 줄 소개">' + esc(r.desc) + "</div>" : "") + lnk + "</div></div>";
   }).join("");
@@ -337,7 +341,7 @@ function sheetHTML(v) {
 
 let fontsReady = null;
 function loadFonts() {
-  if (!fontsReady) fontsReady = Promise.all(["400", "700", "900"].map(w => document.fonts.load(w + ' 30px "Noto Sans KR"', "가나다")).concat(document.fonts.ready)).catch(() => {});
+  if (!fontsReady) fontsReady = Promise.all(["400 30px \"IBM Plex Sans KR\"", "600 30px \"IBM Plex Sans KR\"", "400 30px \"Gowun Batang\"", "700 30px \"Gowun Batang\"", "400 30px \"Nanum Pen Script\""].map(f => document.fonts.load(f, "가나다0123")).concat(document.fonts.ready)).catch(() => {});
   return fontsReady;
 }
 
@@ -351,7 +355,7 @@ function capture(idx) {
     const el = src.cloneNode(true);
     el.querySelectorAll(".editing").forEach(x => x.classList.remove("editing"));
     stage.innerHTML = ""; stage.appendChild(el);
-    const canvas = await html2canvas(el, { scale: 1.5, backgroundColor: "#f4f6fa", logging: false, windowWidth: 1200 });
+    const canvas = await html2canvas(el, { scale: 1.5, backgroundColor: "#F3F4F0", logging: false, windowWidth: 1200 });
     stage.innerHTML = "";
     return await new Promise(res => canvas.toBlob(res, "image/png"));
   });
